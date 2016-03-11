@@ -1,10 +1,14 @@
+/** The class {@code Client} for describe clients
+ *  
+ *  @author Evgeny Novikov
+ */
 public class Client {
 	
-	private int id;
-	private int birthyear;
-	private String fn;
-	private String ln;
-	private String mn;
+	private int id; //clientID
+	private int birthyear; //clients year of birth
+	private String fn; // FirstName
+	private String ln; //LastName
+	private String mn; //MiddleName
 	
 	public Client(int id) {
 		this.id = id;

@@ -1,4 +1,8 @@
-
+/** The class {@code View} 
+ * for  sort and display information
+ *  
+ *  @author Evgeny Novikov
+ */
 public class View {
 	
 	private String typesort;

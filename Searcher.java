@@ -1,5 +1,9 @@
-
-
+/** The class {@code Searcher} 
+ * has a lot of methods for search necessary Clients/Devices/Checks 
+ * in Lists
+ *  
+ *  @author Evgeny Novikov
+ */
 public class Searcher {
 	public ListClients searchClients(ListClients ls, String [] params, String [] values) {
 		ListClients findedClients = ls;

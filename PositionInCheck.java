@@ -1,4 +1,8 @@
-
+/** The class {@code PositionInCheck} 
+ * for describe one of multiplicity notes in {@code Check}
+ *  
+ *  @author Evgeny Novikov
+ */
 public class PositionInCheck {
 	
 	private int deviceID;

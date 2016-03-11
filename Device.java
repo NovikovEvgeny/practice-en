@@ -1,5 +1,8 @@
 import java.util.Date;
-
+/** The class {@code Device} for describe devices
+ *  
+ *  @author Evgeny Novikov
+ */
 public class Device {
 	
 	private int id;

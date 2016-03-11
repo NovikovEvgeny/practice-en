@@ -1,8 +1,11 @@
 import java.util.Scanner;
 import java.util.Date;
-
+/** The class {@code Controller} is class for interaction with user
+ * and check correct of users commands
+ *  
+ *  @author Evgeny Novikov
+ */
 public class Controller {
-	/* A class implementation */
 	ListDevices devices = new ListDevices();
 	ListClients clients = new ListClients();
 	ListChecks checks = new ListChecks();
@@ -203,7 +206,7 @@ public class Controller {
 			}
 		} while (notExit);
 			
-			
+		sc.close();
 		/* Examples of commands:
 		 * add client Evgeniy Novikov Pavlovich 1994
 		 * add device model type color date(int?)
@@ -271,11 +274,6 @@ public class Controller {
 				return -1;
 			}
 			switch (s[1].toLowerCase()) {
-			/*search client firstname Evgeny lastname Novikov middlename Pavlovich year 1994 id 0 sort firstname
-			*search device model asdf type asdf color adsf date 1995 id 0 sort type
-			*search check clientid 0 firstname Evgeny lastname Novikov middlename pavlovich year 1994 date 1994 
-			*sort clientid date sortpos deviceid count
-			*/
 			case "client":		
 				return 5;
 				

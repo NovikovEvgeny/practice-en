@@ -1,4 +1,7 @@
-
+/** The class {@code Helper} for form documentations for users
+ *  
+ *  @author Evgeny Novikov
+ */
 public class Helper {
 	public String getHelp(String s) {
 		switch (s.toLowerCase()) {

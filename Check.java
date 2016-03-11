@@ -3,6 +3,10 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 
+/** The class {@code Check} for describe clients purchases
+ *  
+ *  @author Evgeny Novikov
+ */
 public class Check {
 	
 	static Comparator <PositionInCheck> deviceIDOrder = 
@@ -33,11 +37,12 @@ public class Check {
 		}
 	};
 	
-	private int id; 
-	private int clientID;
-	private Date date;	
-	private ArrayList<PositionInCheck> positions;
+	private int id; // check ID
+	private int clientID; // client's ID in check
+	private Date date;	// date of check
+	private ArrayList<PositionInCheck> positions; //positions in check
 	
+	/* to create Check, we should know clientID and date, checkID adds by ListChecks*/
 	public Check(int id, int clientID, Date date) {
 		positions = new ArrayList<PositionInCheck>();
 		this.id = id;
@@ -45,6 +50,7 @@ public class Check {
 		this.date = date;
 	}
 	
+	/* method is using from ListChecks.addPositionInCheck(checkID, deviceID, count) */
 	public void addPositionInCheck(int deviceID, int count) {
 		PositionInCheck pos = new PositionInCheck(deviceID, count);
 		positions.add(pos);

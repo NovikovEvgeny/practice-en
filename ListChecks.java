@@ -2,7 +2,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Comparator;
 import java.util.Collections;
-
+/** The class {@code ListChecks} 
+ * for storing a multiplicity of checks ({@code Check} class)
+ *  
+ *  @author Evgeny Novikov
+ */
 public class ListChecks {
 	
 	static Comparator <Check> idOrder = new Comparator <Check>() {

@@ -1,7 +1,11 @@
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-
+/** The class {@code ListClients} 
+ * for storing a multiplicity of clients ({@code Client} class)
+ *  
+ *  @author Evgeny Novikov
+ */
 public class ListClients {
 	
 	static Comparator <Client> firstNameOrder = new Comparator <Client>() {

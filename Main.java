@@ -1,4 +1,8 @@
-
+/** The class {@code Main} 
+ * is a main class in program
+ *  
+ *  @author Evgeny Novikov
+ */
 public class Main {
 
 	public static void main(String[] args) {
