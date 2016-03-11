@@ -57,8 +57,21 @@ public class ListChecks {
 		return checks.get(checks.size() - 1).getID();
 	}
 	
+	public int  addCheck(Check c) {
+		Check chk = new Check(c.getID(), c.getClientID(), c.getDate());
+		for (int i=0; i<c.getSize(); i++) {
+			chk.addPositionInCheck(c.getPosition(i).getDeviceID(), c.getPosition(i).getCount());
+		}
+		checks.add(chk);
+		return c.getID();
+	}
+	
 	public void addPositionInCheck(int checkID, int deviceID, int count) {
-		checks.get(checkID).addPositionInCheck(deviceID, count);
+		for (int i=0; i<checks.size(); i++) {
+			if (checks.get(i).getID() == checkID) {
+				checks.get(i).addPositionInCheck(deviceID, count);
+			}
+		}
 	}
 	
 	public StringBuilder getChecks(ListDevices devices, ListClients clients, 
@@ -82,6 +95,28 @@ public class ListChecks {
 		return checks.size();
 	}
 	
+	public Check get(int i) {
+		return checks.get(i);
+	}
+	
+	public Check getByID(int id) {
+		for (Check check : checks) {
+			if (check.getID() == id) {
+				return check;
+			}
+		}
+		return null;
+	}
+	
+	public boolean containsID(int id) {
+		for (Check check : checks) {
+			if (check.getID() == id) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public void sort(String typesortChecks, String typesortPositions) {
 		switch (typesortChecks) {
 		case "clientIDOrder": 
@@ -100,4 +135,5 @@ public class ListChecks {
 			ch.sort(typesortPositions);
 		}
 	}
+	
 }

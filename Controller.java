@@ -29,8 +29,21 @@ public class Controller {
 		devices.addDevice("Lenovo", "notebook", "white", new Date());
 		devices.addDevice("Asus", "notebook", "black", new Date());
 		
+		int idChk = checks.addCheck(0, new Date());
+		checks.addPositionInCheck(idChk, 0, 5);
+		checks.addPositionInCheck(idChk, 2, 3);
 		
+		idChk = checks.addCheck(1, new Date());
+		checks.addPositionInCheck(idChk, 1, 5);
+		checks.addPositionInCheck(idChk, 2, 7);
 		
+		idChk = checks.addCheck(2, new Date());
+		checks.addPositionInCheck(idChk, 3, 2);
+		checks.addPositionInCheck(idChk, 1, 1);
+		
+		idChk = checks.addCheck(3, new Date());
+		checks.addPositionInCheck(idChk, 0, 3);
+		checks.addPositionInCheck(idChk, 3, 10);
 		
 		display.println("WELCOME");
 		display.printHelp("main");
@@ -159,6 +172,29 @@ public class Controller {
 				
 			case 7:
 				display.println("search check");
+				int p = 0;
+				if (commandSplit[commandSplit.length-2].equalsIgnoreCase("sort"))
+				{
+					params = new String[commandSplit.length/2-2];
+					values = new String[commandSplit.length/2-2];
+					for (int i=2; i<commandSplit.length-2; i+=2) {
+						params[p] = commandSplit[i];
+						values[p] = commandSplit[i+1];
+						p++;
+					}
+				} else {
+					params = new String[commandSplit.length/2-1];
+					values = new String[commandSplit.length/2-1];
+					for (int i=2; i<commandSplit.length; i+=2) {
+						params[p] = commandSplit[i];
+						values[p] = commandSplit[i+1];
+						p++;
+					}
+				}
+				
+				display.displayChecks(searcher.searchChecks(checks, clients, devices, params, values),
+						devices, clients,
+						"clientIDOrder","countOrder" );
 				break;
 				
 			default:

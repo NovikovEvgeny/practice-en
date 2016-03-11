@@ -68,6 +68,10 @@ public class Check {
 		return str.toString();
 	}
 	
+	public PositionInCheck getPosition(int i) {
+		return positions.get(i);
+	}
+	
 	public int getSize() {
 		return positions.size();
 	}
