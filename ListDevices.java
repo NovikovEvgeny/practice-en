@@ -60,6 +60,11 @@ public class ListDevices {
 		devices.add(dev);
 	}
 	
+	public void addDevice(Device d) {
+		Device cl = new Device (devices.size(), d.getModel(), d.getType(), d.getColor(), d.getDate());
+		devices.add(cl);
+	}
+	
 	public StringBuilder getDevices(String typesort) {
 		this.sort(typesort);
 		return this.getDevices();

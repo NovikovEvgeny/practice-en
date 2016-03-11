@@ -3,16 +3,34 @@ import java.util.Date;
 
 public class Controller {
 	/* A class implementation */
-	public static void main(String[] args) {
-		ListDevices devices = new ListDevices();
-		ListClients clients = new ListClients();
-		ListChecks checks = new ListChecks();
-		View display = new View();
-		Helper helper = new Helper();
+	ListDevices devices = new ListDevices();
+	ListClients clients = new ListClients();
+	ListChecks checks = new ListChecks();
+	View display = new View();
+	Helper helper = new Helper();
+	Searcher searcher = new Searcher();
+	
+	String [] params; // for search
+	String [] values; // for search
+	
+	public void exec() {
 		// TODO change scanner to BufferedReader
 		Scanner sc = new Scanner (System.in);
 		String command; //entered instruction 
 		String[] commandSplit;
+		
+		clients.addClient("Evgeny", "Novikov", "Pavlovich", 1994);
+		clients.addClient("Alena", "Yakovleva", "Andreevna", 1995);
+		clients.addClient("Evgeny", "Yakovlev", "Pavlovich", 1993);
+		clients.addClient("Alena", "Novikova", "Pavlovna", 1994);
+		
+		devices.addDevice("IPhone-5", "smartphone", "white", new Date());
+		devices.addDevice("IPhone-6", "smartphone", "black", new Date());
+		devices.addDevice("Lenovo", "notebook", "white", new Date());
+		devices.addDevice("Asus", "notebook", "black", new Date());
+		
+		
+		
 		
 		display.println("WELCOME");
 		display.printHelp("main");
@@ -20,7 +38,7 @@ public class Controller {
 		do {
 			command = sc.nextLine();
 			commandSplit = command.split(" ");
-			switch (checkNewCommand(clients, devices, checks, commandSplit)) {
+			switch (checkNewCommand(commandSplit)) {
 			/* Possible returns of checkNewCommand:
 			 * 0 - exit
 			 * -2 - wrong clientID in add check
@@ -88,11 +106,56 @@ public class Controller {
 				
 			case 5:
 				display.println("search client");
+				int j=0;
+				if (commandSplit[commandSplit.length-2].equalsIgnoreCase("sort"))
+				{
+					params = new String[commandSplit.length/2-2];
+					values = new String[commandSplit.length/2-2];
+					for (int i=2; i<commandSplit.length-2; i+=2) {
+						params[j] = commandSplit[i];
+						values[j] = commandSplit[i+1];
+						j++;
+					}
+				} else {
+					params = new String[commandSplit.length/2-1];
+					values = new String[commandSplit.length/2-1];
+					for (int i=2; i<commandSplit.length; i+=2) {
+						params[j] = commandSplit[i];
+						values[j] = commandSplit[i+1];
+						j++;
+					}
+				}
+					
+				display.displayClients(searcher.searchClients(clients, params, values), 
+						commandSplit[commandSplit.length-1]);
 				break;
 				
 			case 6:
 				display.println("search device");
+				int k = 0;
+				if (commandSplit[commandSplit.length-2].equalsIgnoreCase("sort"))
+				{
+					params = new String[commandSplit.length/2-2];
+					values = new String[commandSplit.length/2-2];
+					for (int i=2; i<commandSplit.length-2; i+=2) {
+						params[k] = commandSplit[i];
+						values[k] = commandSplit[i+1];
+						k++;
+					}
+				} else {
+					params = new String[commandSplit.length/2-1];
+					values = new String[commandSplit.length/2-1];
+					for (int i=2; i<commandSplit.length; i+=2) {
+						params[k] = commandSplit[i];
+						values[k] = commandSplit[i+1];
+						k++;
+					}
+				}
+				
+				display.displayDevices(searcher.searchDevices(devices, params, values), 
+						commandSplit[commandSplit.length-1]);
 				break;
+				
 				
 			case 7:
 				display.println("search check");
@@ -119,7 +182,7 @@ public class Controller {
 		 */
 	}
 	
-	public static int checkNewCommand(ListClients cl, ListDevices dv, ListChecks ch, String[] s) {
+	public int checkNewCommand(String[] s) {
 		/*
 		 * checks new command and return code of command
 		 * -2 - worng clientID in addcheck
@@ -158,7 +221,7 @@ public class Controller {
 				if (s.length < 5) {
 					return -1;
 				}
-				if (!cl.containsID(Integer.parseInt(s[2]))) {
+				if (!clients.containsID(Integer.parseInt(s[2]))) {
 					return -2;
 				}
 				return 4;
@@ -185,6 +248,9 @@ public class Controller {
 				
 			case "check":
 				return 7;
+				
+			default: 
+				return -1;
 			}//end case "search"
 			
 		case "exit":

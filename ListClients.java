@@ -64,6 +64,11 @@ public class ListClients {
 		Client cl = new Client (clients.size(), FN, LN, MN, year);
 		clients.add(cl);	
 	}
+	
+	public void addClient(Client c) {
+		Client c1 = new Client (clients.size(), c.getFN(), c.getLN(), c.getMN(), c.getYear());
+		clients.add(c1);
+	}
 
 	public StringBuilder getClients(String typesort) {
 		this.sort(typesort);
@@ -128,7 +133,7 @@ public class ListClients {
 			break;
 			
 		default: 
-			Collections.sort(clients, idOrder); 
+			Collections.sort(clients, lastNameOrder); 
 			break;
 		}
 	}
