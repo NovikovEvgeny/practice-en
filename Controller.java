@@ -1,5 +1,7 @@
 import java.util.Scanner;
 import java.util.Date;
+import java.util.ArrayList;
+
 /** The class {@code Controller} is class for interaction with user
  * and check correct of users commands
  *  
@@ -13,8 +15,9 @@ public class Controller {
 	Helper helper = new Helper();
 	Searcher searcher = new Searcher();
 	
-	String [] params; // for search
-	String [] values; // for search
+	ArrayList<String> params = new ArrayList<String>(); // for search
+	ArrayList<String> values = new ArrayList<String>(); // for search
+	String sortType = "";
 	
 	public void exec() {
 		// TODO change scanner to BufferedReader
@@ -22,6 +25,7 @@ public class Controller {
 		String command; //entered instruction 
 		String[] commandSplit;
 		
+		//for example & text
 		clients.addClient("Evgeny", "Novikov", "Pavlovich", 1994);
 		clients.addClient("Alena", "Yakovleva", "Andreevna", 1995);
 		clients.addClient("Evgeny", "Yakovlev", "Pavlovich", 1993);
@@ -47,6 +51,7 @@ public class Controller {
 		idChk = checks.addCheck(3, new Date());
 		checks.addPositionInCheck(idChk, 0, 3);
 		checks.addPositionInCheck(idChk, 3, 10);
+		//end test
 		
 		display.println("WELCOME");
 		display.printHelp("main");
@@ -67,30 +72,30 @@ public class Controller {
 			 * 6 - search device
 			 * 7 - search check
 			 */
-			case -1:
+			case -1: //Wrong command
 				display.println("Wrong command. Enter help for information");
 				break;
 				
-			case -2:
+			case -2: // wrong clientID in add check
 				display.println("Nonexistent clientID");
 				break;
 				
-			case 0:
+			case 0: //exit
 				notExit = false;
 				break;
 				
-			case 1:
+			case 1: //help
 				display.println(helper.getHelp(command));
 				break;
 				
-			case 2:
+			case 2: //add client
 				display.println("added client");
 				//TODO change 1994 to normal date
 				clients.addClient(commandSplit[2], commandSplit[3], commandSplit[4], 1994);
 				display.displayClients(clients);
 				break;
 				
-			case 3:
+			case 3: //add device
 				display.println("added device");
 				Date dt = new Date();
 				//TODO normal date
@@ -99,7 +104,7 @@ public class Controller {
 				display.displayDevices(devices);
 				break;
 				
-			case 4:
+			case 4: //add check
 				display.println("added check");
 				Date dt2 = new Date(5);
 				String[] devcount;
@@ -120,84 +125,58 @@ public class Controller {
 				display.displayChecks(checks, devices, clients);
 				break;
 				
-			case 5:
+			case 5: //search client
 				display.println("search client");
-				int j=0;
-				if (commandSplit[commandSplit.length-2].equalsIgnoreCase("sort"))
-				{
-					params = new String[commandSplit.length/2-2];
-					values = new String[commandSplit.length/2-2];
-					for (int i=2; i<commandSplit.length-2; i+=2) {
-						params[j] = commandSplit[i];
-						values[j] = commandSplit[i+1];
-						j++;
+				for (int i=2; i<commandSplit.length; i+=2) {
+					if (commandSplit[i].equalsIgnoreCase("sort")) {
+						sortType = commandSplit[i+1];
+						break;
 					}
-				} else {
-					params = new String[commandSplit.length/2-1];
-					values = new String[commandSplit.length/2-1];
-					for (int i=2; i<commandSplit.length; i+=2) {
-						params[j] = commandSplit[i];
-						values[j] = commandSplit[i+1];
-						j++;
-					}
+					params.add(commandSplit[i]);
+					values.add(commandSplit[i+1]);
 				}
 					
-				display.displayClients(searcher.searchClients(clients, params, values), 
-						commandSplit[commandSplit.length-1]);
+				display.displayClients(searcher.searchClients(clients, params, values), sortType);
 				break;
 				
-			case 6:
+			case 6: //search device
 				display.println("search device");
-				int k = 0;
-				if (commandSplit[commandSplit.length-2].equalsIgnoreCase("sort"))
-				{
-					params = new String[commandSplit.length/2-2];
-					values = new String[commandSplit.length/2-2];
-					for (int i=2; i<commandSplit.length-2; i+=2) {
-						params[k] = commandSplit[i];
-						values[k] = commandSplit[i+1];
-						k++;
+				for (int i=2; i<commandSplit.length; i+=2) {
+					if (commandSplit[i].equalsIgnoreCase("sort")) {
+						sortType = commandSplit[i+1];
+						break;
 					}
-				} else {
-					params = new String[commandSplit.length/2-1];
-					values = new String[commandSplit.length/2-1];
-					for (int i=2; i<commandSplit.length; i+=2) {
-						params[k] = commandSplit[i];
-						values[k] = commandSplit[i+1];
-						k++;
-					}
+					params.add(commandSplit[i]);
+					values.add(commandSplit[i+1]);
 				}
 				
-				display.displayDevices(searcher.searchDevices(devices, params, values), 
-						commandSplit[commandSplit.length-1]);
+				display.displayDevices(searcher.searchDevices(devices, params, values), sortType);
 				break;
 				
 				
-			case 7:
+			case 7: //search check
 				display.println("search check");
-				int p = 0;
-				if (commandSplit[commandSplit.length-2].equalsIgnoreCase("sort"))
-				{
-					params = new String[commandSplit.length/2-2];
-					values = new String[commandSplit.length/2-2];
-					for (int i=2; i<commandSplit.length-2; i+=2) {
-						params[p] = commandSplit[i];
-						values[p] = commandSplit[i+1];
-						p++;
-					}
-				} else {
-					params = new String[commandSplit.length/2-1];
-					values = new String[commandSplit.length/2-1];
-					for (int i=2; i<commandSplit.length; i+=2) {
-						params[p] = commandSplit[i];
-						values[p] = commandSplit[i+1];
-						p++;
-					}
-				}
 				
+				String posSortType = "";
+				
+				for (int i=2; i<commandSplit.length; i+=2) {
+					if (commandSplit[i].equalsIgnoreCase("sort")) {
+						sortType = commandSplit[i+1];
+						continue;
+					}
+					if (commandSplit[i].equalsIgnoreCase("possort") ||
+							commandSplit[i].equalsIgnoreCase("sortpos")) {
+						posSortType = commandSplit[i+1];
+						break;
+					}
+					params.add(commandSplit[i]);
+					values.add(commandSplit[i+1]);
+				}
+
+
 				display.displayChecks(searcher.searchChecks(checks, clients, devices, params, values),
 						devices, clients,
-						"clientIDOrder","countOrder" );
+						sortType, posSortType );
 				break;
 				
 			default:

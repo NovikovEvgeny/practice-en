@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 /** The class {@code Searcher} 
  * has a lot of methods for search necessary Clients/Devices/Checks 
  * in Lists
@@ -5,10 +6,10 @@
  *  @author Evgeny Novikov
  */
 public class Searcher {
-	public ListClients searchClients(ListClients ls, String [] params, String [] values) {
+	public ListClients searchClients(ListClients ls, ArrayList<String> params, ArrayList<String> values) {
 		ListClients findedClients = ls;
-		for (int i=0; i<params.length && i<values.length && params[i] != null; i++) {
-			findedClients = searchClients(findedClients, params[i].toLowerCase(), values[i]);
+		for (int i=0; i<params.size(); i++) {
+			findedClients = searchClients(findedClients, params.get(i).toLowerCase(), values.get(i));
 		}		
 		return findedClients;
 	}
@@ -59,10 +60,10 @@ public class Searcher {
 		return findedClients;
 		}
 		
-	public ListDevices searchDevices(ListDevices ls, String [] params, String [] values) {
+	public ListDevices searchDevices(ListDevices ls, ArrayList<String> params, ArrayList<String> values) {
 		ListDevices findedDevices = ls;
-		for (int i=0; i<params.length && i<values.length && params[i] != null; i++) {
-			findedDevices = searchDevices(findedDevices, params[i].toLowerCase(), values[i]);
+		for (int i=0; i<params.size(); i++) {
+			findedDevices = searchDevices(findedDevices, params.get(i).toLowerCase(), values.get(i));
 		}		
 		return findedDevices;
 	}
@@ -116,10 +117,10 @@ public class Searcher {
 	}
 	
 	public ListChecks searchChecks(ListChecks lc, ListClients ls, ListDevices ld, 
-			String [] params, String [] values) {
+			ArrayList<String> params, ArrayList<String> values) {
 		ListChecks findedChecks = lc;
-		for (int i=0; i<params.length && i<values.length && params[i] != null; i++) {
-			findedChecks = searchChecks(findedChecks, ls, ld, params[i].toLowerCase(), values[i]);
+		for (int i=0; i<params.size(); i++) {
+			findedChecks = searchChecks(findedChecks, ls, ld, params.get(i).toLowerCase(), values.get(i));
 		}		
 		return findedChecks;
 	}

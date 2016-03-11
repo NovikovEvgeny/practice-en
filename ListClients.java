@@ -116,28 +116,28 @@ public class ListClients {
 	
 	public void sort(String typesort) {
 		switch (typesort) {
-		case "firstNameOrder": 
+		case "firstname": 
 			Collections.sort(clients, firstNameOrder); 
 			break;
 			
-		case "lastNameOrder": 
+		case "lastname": 
 			Collections.sort(clients, lastNameOrder); 
 			break;
 			
-		case "middleNameOrder": 
+		case "middlename": 
 			Collections.sort(clients, middleNameOrder); 
 			break;
 			
-		case "fullNameOrder": 
+		case "fullname": 
 			Collections.sort(clients, fullNameOrder); 
 			break;
 			
-		case "birthYearOrder": 
+		case "birthyear": 
 			Collections.sort(clients, birthYearOrder); 
 			break;
 			
 		default: 
-			Collections.sort(clients, lastNameOrder); 
+			Collections.sort(clients, idOrder); 
 			break;
 		}
 	}

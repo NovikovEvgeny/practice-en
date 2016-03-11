@@ -74,6 +74,7 @@ public class ListChecks {
 		for (int i=0; i<checks.size(); i++) {
 			if (checks.get(i).getID() == checkID) {
 				checks.get(i).addPositionInCheck(deviceID, count);
+				return;
 			}
 		}
 	}
@@ -123,11 +124,15 @@ public class ListChecks {
 	
 	public void sort(String typesortChecks, String typesortPositions) {
 		switch (typesortChecks) {
-		case "clientIDOrder": 
+		case "clientID": 
+			/* falls through */
+		case "clientid":
+			/*falls through */
+		case "clientId":
 			Collections.sort(checks, clientIDOrder); 
 			break;
 			
-		case "dateOrder": 
+		case "date": 
 			Collections.sort(checks, dateOrder); 
 			break;
 			

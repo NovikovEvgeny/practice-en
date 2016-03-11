@@ -96,7 +96,7 @@ public class Check {
 	
 	public void sort(String typesortPositions) {
 		switch (typesortPositions) {
-		case "countOrder": 
+		case "count": 
 			Collections.sort(positions, countOrder); 
 			break;
 			

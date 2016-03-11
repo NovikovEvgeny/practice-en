@@ -111,19 +111,19 @@ public class ListDevices {
 	
 	public void sort(String typesort) {
 		switch (typesort) {
-		case "modelOrder": 
+		case "model": 
 			Collections.sort(devices, modelOrder); 
 			break;
 			
-		case "typeOrder": 
+		case "type": 
 			Collections.sort(devices, typeOrder); 
 			break;
 			
-		case "colorOrder": 
+		case "color": 
 			Collections.sort(devices, colorOrder); 
 			break;
 			
-		case "dateOrder": 
+		case "date": 
 			Collections.sort(devices, dateOrder); 
 			break;
 			

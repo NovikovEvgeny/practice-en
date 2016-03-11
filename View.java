@@ -12,23 +12,23 @@ public class View {
 	public void setTypesort(String object, String typesort) {
 		if (object.compareTo("Client") == 0) {
 			switch (typesort) {
-			case "firstNameOrder": 
+			case "firstname": 
 				this.typesort = "first name order"; 
 				break;
 				
-			case "lastNameOrder": 
+			case "lastname": 
 				this.typesort = "last name order"; 
 				break;
 				
-			case "middleNameOrder": 
+			case "middlename": 
 				this.typesort = "middle name order"; 
 				break;
 				
-			case "fullNameOrder": 
+			case "fullname": 
 				this.typesort = "full name order"; 
 				break;
 				
-			case "birthYearOrder": 
+			case "birthyear": 
 				this.typesort = "birthyear order"; 
 				break;
 				
@@ -40,19 +40,19 @@ public class View {
 		}
 		if (object.compareTo("Device") == 0) {
 			switch (typesort) {
-			case "modelOrder": 
+			case "model": 
 				this.typesort = "model order"; 
 				break;
 				
-			case "typeOrder": 
+			case "type": 
 				this.typesort = "type order"; 
 				break;
 				
-			case "colorOrder": 
+			case "color": 
 				this.typesort = "color order"; 
 				break;
 				
-			case "dateOrder": 
+			case "date": 
 				this.typesort = "date order"; 
 				break;
 				
@@ -67,11 +67,15 @@ public class View {
 	public void setTypesort(String object, String tsCh, String tsPos) {
 		if (object.compareTo("Check") == 0) {
 			switch (tsCh) {
-			case "clientIDOrder": 
+			case "clientID": 
+				/*falls through */
+			case "clientid":
+				/*falls through */
+			case "clientId":
 				this.typesort = "clientID order"; 
 				break;
 				
-			case "dateOrder": 
+			case "date": 
 				this.typesort = "date order"; 
 				break;
 				
@@ -80,7 +84,7 @@ public class View {
 				break;
 			}
 			switch (tsPos) {
-			case "countOrder": 
+			case "count": 
 				this.typesortPos = "count order"; 
 				break;
 				
